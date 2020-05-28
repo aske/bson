@@ -23,10 +23,6 @@ Cabal-version: >= 1.10
 Build-type:    Simple
 Extra-Source-Files: CHANGELOG.md
 
-Flag _old-network
-  description: Control whether to use <http://hackage.haskell.org/package/network-bsd network-bsd>
-  manual: False
-
 Library
   Build-depends:      base >= 4.9.0.0 && < 5
                     , time
@@ -36,13 +32,7 @@ Library
                     , data-binary-ieee754
                     , mtl >= 2
                     , text >= 0.11
-
-  if flag(_old-network)
-     -- "Network.BSD" is only available in network < 2.9
-     build-depends: network < 2.9
-  else
-     -- "Network.BSD" has been moved into its own package `network-bsd`
-     build-depends: network-bsd >= 2.7 && < 2.9
+                    , network-bsd >= 2.8
 
   Default-Language: Haskell2010
   Default-Extensions: BangPatterns, CPP
